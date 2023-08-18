@@ -1,0 +1,60 @@
+<?php
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
+class QuantiteEmail extends Module
+{
+    public function __construct()
+    {
+        $this->name = 'quantiteemail';
+        $this->tab = 'administration';
+        $this->version = '1.0.0';
+        $this->author = 'Lilya EMAD';
+        $this->need_instance = 0;
+        $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
+        $this->bootstrap = true;
+
+        parent::__construct();
+
+        $this->Mail = $this->l('quantité email');
+        $this->Quantité = $this->l('Envoi un email pour la quantité par produits.');
+    }
+
+    public function install()
+    {
+        return parent::install() &&
+            $this->registerHook('Update');
+    }
+
+    public function uninstall()
+    {
+        return parent::uninstall();
+    }
+
+    public function hookUpdate($param)
+    {
+        if (isset($param['product'])) {
+            $produit = $param['produit'];
+            $quantiteRestante = (int) StockAvailable::QuantitéDisponible($produit->id, $produit->id_default_attribute);
+
+            $to = 'destinataire@example.com';
+            $subject = 'Modification de quantité pour le produit ' . $produit->name;
+            $message = 'La quantité en stock restante pour le produit ' . $produit->name . ' est : ' . $quantiteRestante;
+
+            Mail::Send(
+                (int)Context::getContext()->language->id,
+                'product_quantity_change',
+                $subject,
+                array('{message}' => $message),
+                $to,
+                null,
+                null,
+                null,
+                null,
+                null,
+                _PS_MODULE_DIR_ . 'quantiteemail/mails/' );
+        }
+    }
+}
+?> 
