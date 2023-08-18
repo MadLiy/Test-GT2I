@@ -21,6 +21,29 @@ $dbname = "votre_base_de_donnees";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
+/* strucuture sql */
+$sqlStructure = CREATE TABLE IF NOT EXISTS produits (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    produit_pocleunik INT,
+    produit_ref VARCHAR(255),
+    refciale_arcleunik INT);
+
+CREATE TABLE IF NOT EXISTS catalogue_data(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_name VARCHAR(255),
+    product_price DECIMAL(10, 2),
+    product_description TEXT,
+    product_category VARCHAR(255)
+);
+
+/* Exec de la créa structure SQL*/ 
+
+if (mysqli_multi_query($conn, $sqlStructure)) {
+    echo "Structure SQL créée avec succès.";
+} else {
+    echo "Erreur lors de la création de la structure SQL : ".mysqli_error($conn);
+}
+
 $xml = '
  < HF_DOCUMENT >
 <!-- Contenu XML -->
@@ -68,4 +91,5 @@ foreach ($xml->catalogue->produit as $produit) {
 $conn->close();
 
 echo "Données insérées avec succès!";
+
 ?>
