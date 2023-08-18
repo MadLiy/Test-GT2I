@@ -30,10 +30,10 @@ $sqlStructure = CREATE TABLE IF NOT EXISTS produits (
 
 CREATE TABLE IF NOT EXISTS catalogue_data(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    product_name VARCHAR(255),
-    product_price DECIMAL(10, 2),
-    product_description TEXT,
-    product_category VARCHAR(255)
+    produit_name VARCHAR(255),
+    produit_prix DECIMAL(10, 2),
+    produit_description TEXT,
+    produit_categorie VARCHAR(255)
 );
 
 /* Exec de la créa structure SQL*/ 
@@ -68,20 +68,20 @@ $produit_clep01 = $fLigne - >PRODUIT_CLEP01;
 $produit_clep02 = $fLigne - >PRODUIT_CLEP02;
 $produit_clep03 = $fLigne - >PRODUIT_CLEP03;
 $produit_clep04 = $fLigne - >PRODUIT_CLEP04;
-$produit_clep06 = $fLigne - >PRODUIT_CLEP06
+$produit_clep06 = $fLigne - >PRODUIT_CLEP06;
 $produit_clep07 = $fLigne - >PRODUIT_CLEP07;
 $produit_gcoloris = $fLigne - >PRODUIT_GCOLORIS;
 $produit_gtaille = $fLigne - >PRODUIT_GTAILLE;
 $produit_clep12 = $fLigne - >PRODUIT_CLEP12;
 $refciale_ficheina = $fLigne - >REFCIALE_FICHEINA;
-$refciale_modte = $fLigne - >REFCIALE_MODTE
+$refciale_modte = $fLigne - >REFCIALE_MODTE;
 $produit_modte = $fLigne - >PRODUIT_MODTE;
 $article_poids = $fLigne - >ARTICLE_POIDS;
 $article_hnormel = $fLigne - >ARTICLE_HNORMEL;
 $article_categ = $fLigne - >ARTICLE_CATEG;
 
 $sql = "INSERT INTO produits (produit_pocleunik, produit_ref, refciale_arcleunik, refciale_refart,refciale_refcat,potrad_desi,refciale_ctva, fictech_memocat,fictech_memonet,produit_marque,produit_clep01,produit_clep02,produit_clep03,produit_clep04,produit_clep06,produit_clep07,produit_gcoloris,produit_gtaille,produit_clep12,refciale_ficheina,refciale_modte,produit_modte,article_poids,article_hnormel,article_categ)
-        VALUES ('$produit_pocleunik', '$produit_ref', '$refciale_arcleunik','refciale_refart','refciale_refcat','potrad_desi','refciale_ctva','fictech_memocat','fictech_memonet','produit_marque','produit_clep01','produit_clep02','produit_clep03','produit_clep04','produit_clep06','produit_clep07',produit_gcoloris,'produit_gtaille','produit_clep12','refciale_ficheina','refciale_modte','produit_modte','article_poids','article_hnormel','article_categ')";
+        VALUES ('$produit_pocleunik', '$produit_ref', '$refciale_arcleunik','$refciale_refart','$refciale_refcat','$potrad_desi','$refciale_ctva','$fictech_memocat','$fictech_memonet','$produit_marque','$produit_clep01','$produit_clep02','$produit_clep03','$produit_clep04','$produit_clep06','$produit_clep07','$produit_gcoloris','$produit_gtaille','$produit_clep12','$refciale_ficheina','$refciale_modte','$produit_modte','$article_poids','$article_hnormel','$article_categ')";
 
 if (mysqli_query($conn, $sql)) {
     echo "Données insérées avec succès.";
