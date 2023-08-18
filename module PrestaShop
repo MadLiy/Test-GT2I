@@ -9,7 +9,7 @@ class QuantiteEmail extends Module
     {
         $this->name = 'quantiteemail';
         $this->tab = 'administration';
-        $this->version = '1.0.0';
+        $this->version = '8.1.0';
         $this->author = 'Lilya EMAD';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
